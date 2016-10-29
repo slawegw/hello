@@ -1,7 +1,7 @@
 import java.nio.file.Paths;
 import java.util.*;
 import java.io.IOException;
-import java.nio.file.*;
+
 
 public class Main {
 
@@ -13,7 +13,6 @@ public class Main {
 		String[] por = {"cos", "tam"};
 		
 		Scanner in = new Scanner(Paths.get("test.txt"));
-		//ddd
 
 		test = in.nextLine();
 		
