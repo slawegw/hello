@@ -13,7 +13,7 @@ public class Main {
 		String[] por = {"cos", "tam"};
 		
 		Scanner in = new Scanner(Paths.get("test.txt"));
-		
+		//ddd
 
 		test = in.nextLine();
 		
