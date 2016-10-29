@@ -24,6 +24,20 @@ public class pascala {
 			System.out.println("Sorry can't find that file");
 		}
 		
+		catch(IOException e)
+		{
+			System.out.println("Unknown IO Error");
+		}
+		
+		catch(Exception e)
+		{
+			System.out.println("Unknown error");
+		}
+		
+		finally
+		{
+			System.out.println("");
+		}
 	}
 
 	
