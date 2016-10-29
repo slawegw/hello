@@ -32,18 +32,6 @@ public class Main {
 			i++;
 		}
 		
-		
-//		String [] skonwer = new String[test.length()];
-//		
-//		for (int i = 0; i < test.length(); i++){
-//			skonwer[i] = test;			
-//			
-//		}
-//		
-		
-		
-		
-
 	}
 
 }
