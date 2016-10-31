@@ -8,8 +8,8 @@ public class Punkt2D {
 	
 	public Punkt2D() 
 	{
-		wsp[0] = 0;
-		wsp[1] = 0;		
+		wsp[0] = -1;
+		wsp[1] = -1;	
 	}
 	
 	public Punkt2D(int wspX, int wspY)

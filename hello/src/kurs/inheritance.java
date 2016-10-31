@@ -1,28 +1,47 @@
 package kurs;
 
-import java.util.Scanner;
+import java.util.*;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.io.IOException;
+
 
 public class inheritance {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		Scanner in = new Scanner(System.in);
-		Punkt3D wspol = new Punkt3D(0,0,0);
+		BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
+		Punkt3D wspol = new Punkt3D();
 		
-		int odczyt[] = new int[3];
+		int odczyt[] = {-1,-1,-1};
+		boolean ifTrue = false;
 				
 		for (int j = 0; j < 3 ; j++) {
-			System.out.print("Podaj wsp: " + j);
-			odczyt[j] = in.nextInt();
+			ifTrue = false;
+			
+			while (!ifTrue){
+				try {
+					System.out.print("Podaj wsp " + j +": ");
+					odczyt[j] = Integer.parseInt(in.readLine());
+				}
+				catch (NumberFormatException e){
+					System.out.println(" Wrong data" + e);
+				}
+				catch (IOException n){
+					System.out.println("Blad odczytu");
+				}
+				ifTrue = odczyt[j] == -1? false : true;
+			}
 		}
 		
 		
 		wspol.setWspXYZ(odczyt[0], odczyt[1], odczyt[2]);
 		
-		System.out.println(" ");
+		System.out.print("Wsp to: ");
 		
-		for (int i = 0; i<3; i++){
-		System.out.println("Wspolrzedna "+ i + " to: " + wspol.getWsp(i));
+		
+		for (int i : wspol.wsp){
+		System.out.print(" "+ i );
 		
 		}
 		
