@@ -16,10 +16,10 @@ public class Main
 		
 		Scanner in = new Scanner(Paths.get("test.txt"));
 
+		while(in.hasNextLine()) {
 		test = in.nextLine();
 		
 		StringTokenizer st = new StringTokenizer(test);
-		
 		System.out.println("Liczba tokenow: " + st.countTokens()); 
 		
 		int i = 0;		
@@ -32,6 +32,9 @@ public class Main
 			
 			System.out.print(test2[i] + " ");
 			i++;
+		}
+		System.out.println();
+		
 		}
 		
 	}

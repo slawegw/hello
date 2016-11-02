@@ -37,9 +37,9 @@ public class Kredyt {
 			
 			System.out.print("Kapital po " + (i+1) + " racie: ");
 			System.out.printf("%5.2f", kapital);
-			System.out.print(" z³ - Czesc kapital: ");
+			System.out.print(" zl - Czesc kapital: ");
 			System.out.printf("%5.2f", czesc_kap[i]);
-			System.out.print(" z³ - Czesc odsetk: ");
+			System.out.print(" zl - Czesc odsetk: ");
 			System.out.printf("%5.2f", czesc_proc);
 			System.out.println();
 			i++;
