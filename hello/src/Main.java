@@ -14,6 +14,8 @@ public class Main
 		String[] test2 = new String[100];
 		String[] por = {"cos", "tam"};
 		
+		ArrayList<String> aaa = new ArrayList<String>();
+		
 		Scanner in = new Scanner(Paths.get("test.txt"));
 
 		while(in.hasNextLine()) {
