@@ -19,6 +19,7 @@ public class Main
 		while(in.hasNextLine()) {
 		test = in.nextLine();
 		
+		
 		StringTokenizer st = new StringTokenizer(test);
 		System.out.println("Liczba tokenow: " + st.countTokens()); 
 		
