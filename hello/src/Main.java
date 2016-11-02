@@ -25,6 +25,7 @@ public class Main
 		StringTokenizer st = new StringTokenizer(test);
 		System.out.println("Liczba tokenow: " + st.countTokens()); 
 		
+		
 		int i = 0;		
 		while(st.hasMoreTokens()){
 			
