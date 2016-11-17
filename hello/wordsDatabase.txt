@@ -1,0 +1,42 @@
+I;ja;0
+am;jestem;0
+is;jest;0
+has;ma;0
+and;i;0
+this;ten;0
+not;nie;0
+about;oko³o;0
+above;ponad;0
+abroad;za granic¹;0
+absolutely;absolutnie;0
+accident;wypadek;0
+actual;rzeczywisty
+adult;doros³y
+advantage;korzyœæ
+advice;rada
+afraid;obawiaæ siê
+afterwards;potem
+again;znowu
+against;przeciwko
+all;wszyscy
+allergic;alergiczny
+allow;pozwalaæ
+allowed;wolno
+almost;prawie
+alone;sam
+already;ju¿
+also;te¿
+although;chocia¿
+amount;iloœæ
+another;kolejny
+answer;odpowiedŸ
+any;jakiœ
+anyone;ktoœ
+anything;coœ
+anyway;w ogóle
+anywhere;gdzieœ
+had;mia³;1
+turkey;indyk;2
+we;my;1
+of;o;1
+drowned;uton¹³;2

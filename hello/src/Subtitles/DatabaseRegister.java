@@ -1,5 +1,7 @@
 package Subtitles;
 
+
+
 public  class DatabaseRegister {
 	
 	private  String polishWord = "";

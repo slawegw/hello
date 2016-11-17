@@ -16,14 +16,15 @@ public class Translate {
 		StringTokenizer st;
 		
 		// Baza danych do testow
-		wordsDatabase.addNewWord("List", "Lista", 0);
-		wordsDatabase.addNewWord("implementation", "implementacja", 0);
-		wordsDatabase.addNewWord("is", "jest", 0);
-		wordsDatabase.addNewWord("not", "nie", 0);
-		wordsDatabase.addNewWord("size", "rozmiar", 0);
-		wordsDatabase.addNewWord("has", "ma", 0);
-		wordsDatabase.addNewWord("and", "i", 0);
-		wordsDatabase.addNewWord("this", "ten", 0);
+//		wordsDatabase.addNewWord("list", "lista", 0);
+//		wordsDatabase.addNewWord("implementation", "implementacja", 0);
+//		wordsDatabase.addNewWord("is", "jest", 0);
+//		wordsDatabase.addNewWord("not", "nie", 0);
+//		wordsDatabase.addNewWord("size", "rozmiar", 0);
+//		wordsDatabase.addNewWord("has", "ma", 0);
+//		wordsDatabase.addNewWord("and", "i", 0);
+//		wordsDatabase.addNewWord("this", "ten", 0);
+		wordsDatabase.loadsWordsFromFile("wordsDatabase.txt");
 		
 		friend.loadFileToArray();
 		
@@ -41,7 +42,7 @@ public class Translate {
 				tempWord = st.nextToken();
 				tempWordIndex = wordsDatabase.findWord(tempWord); // Get word index if exist, else -1
 												
-				if (tempWordIndex >= 0 ){
+				if (tempWordIndex >= 0 && wordsDatabase.getStateOfWordWithIndex(tempWordIndex) != 1){ //1 pomin slowa znane
 					newWord = wordsDatabase.getPolishWordWithIndex(tempWordIndex);
 					newLineBuffer.append(tempWord);
 					newLineBuffer.append("(");

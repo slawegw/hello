@@ -4,7 +4,7 @@ import java.util.*;
 
 
 
-public class Database {
+public class Database extends ReadFileToArray{
 	
 	ArrayList<DatabaseRegister> wordsList = new ArrayList<DatabaseRegister>();
 	//ArrayList<String> polishWord = new ArrayList<String>();
@@ -22,6 +22,12 @@ public class Database {
 		wordsList.add(new DatabaseRegister(newEnglishWord, newPolishWord, isKnown));
 	}	
 	
+	public void loadsWordsFromFile(String fileName) {
+		
+		wordsList.addAll(ReadDatabaseFileToArray(fileName));
+		//wordsList.add(new DatabaseRegister(newEnglishWord, newPolishWord, isKnown));
+	}	
+	
 	public void getWord(int index){
 		printWord = wordsList.get(index);
 		System.out.println(printWord.getPolishWord());
@@ -31,6 +37,12 @@ public class Database {
 		printWord = wordsList.get(index);
 	//	System.out.println(printWord.getPolishWord());
 		return printWord.getPolishWord();
+	}
+	
+	public int getStateOfWordWithIndex(int index){
+		printWord = wordsList.get(index);
+	//	System.out.println(printWord.getPolishWord());
+		return printWord.getState();
 	}
 	
 	public void printAll() {
@@ -43,7 +55,7 @@ public class Database {
 	public int findWord(String word){
 		int state = -1;
 		for (DatabaseRegister curWord : wordsList){
-			if (curWord.getEnglishWord().equals(word)){
+			if (curWord.getEnglishWord().equalsIgnoreCase(word)){
 				state = curWord.getIndex();
 				break;
 			}
@@ -56,6 +68,7 @@ public class Database {
 	}
 	
 
+	
 	
 	
 
