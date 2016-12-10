@@ -18,12 +18,21 @@ public class Database extends ReadFileToArray{
 	DatabaseRegister printWord = new DatabaseRegister();
 	DatabaseRegister newWord;
 	
+	/**
+	 * Add new word to ArrayList database
+	 * @param newEnglishWord 
+	 * @param newPolishWord
+	 * @param isKnown Define whether word is 1:known, 2:unknown or 0:undefined
+	 */
 	public void addNewWord(String newEnglishWord, String newPolishWord, int isKnown) {
 		wordsList.add(new DatabaseRegister(newEnglishWord, newPolishWord, isKnown));
 	}	
 	
+	/**
+	 * Load words from file to DatabaseRegister
+	 * @param fileName
+	 */
 	public void loadsWordsFromFile(String fileName) {
-		
 		wordsList.addAll(ReadDatabaseFileToArray(fileName));
 		//wordsList.add(new DatabaseRegister(newEnglishWord, newPolishWord, isKnown));
 	}	

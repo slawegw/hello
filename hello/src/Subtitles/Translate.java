@@ -26,7 +26,7 @@ public class Translate {
 //		wordsDatabase.addNewWord("this", "ten", 0);
 		wordsDatabase.loadsWordsFromFile("wordsDatabase.txt");
 		
-		friend.loadFileToArray();
+		friend.loadFileToArray("the.big.bang.theory.txt");
 		
 		//friend.printLineFromArray(2);
 			

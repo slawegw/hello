@@ -20,7 +20,11 @@ public class ReadFileToArray {
 	private int tempIsKnown = 0;
 	ArrayList<DatabaseRegister> dictWordsList = new ArrayList<DatabaseRegister>(); // Lista slownika
 
-	// Otwieranie pliku
+	/**
+	 * Open text file
+	 * @param fileName String to file
+	 * @return Returns BufferedReader object of whole file
+	 */
 	public BufferedReader openTextFile(String fileName) {
 		try {
 			readFile = new FileReader(fileName);
@@ -29,11 +33,12 @@ public class ReadFileToArray {
 		}
 
 		bfr = new BufferedReader(readFile);
-
 		return bfr;
 	}
 
-	// zamykanie pliku
+	/**
+	 * Close text file
+	 */
 	public void closeTextFile() {
 		try {
 			bfr.close();
@@ -43,7 +48,7 @@ public class ReadFileToArray {
 	}
 	
 	/**
-	 * 
+	 * Add defined words from file
 	 * @param fileName Name to file with words database
 	 * @return Database with english and polish words readed from file
 	 */
@@ -62,7 +67,6 @@ public class ReadFileToArray {
 				catch (ArrayIndexOutOfBoundsException e){
 					tempIsKnown = 0;
 				}
-				
 //				if(regexChecker("[0-9]",lineSeparated[2])) {
 //					tempIsKnown =  Integer.parseInt(lineSeparated[2]);
 //				}
@@ -81,10 +85,12 @@ public class ReadFileToArray {
 	}
 
 	
-	// Wczytywanie pliku
-	public void loadFileToArray() {
+	/**
+	 * Loads each line from file to ArrayList object
+	 */
+	public void loadFileToArray(String fileName) {
 
-		this.openTextFile("the.big.bang.theory.txt");
+		this.openTextFile(fileName);
 
 		try {
 			while ((linia = bfr.readLine()) != null) {

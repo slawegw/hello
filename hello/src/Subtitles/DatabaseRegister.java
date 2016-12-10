@@ -12,6 +12,12 @@ public  class DatabaseRegister {
 	
 	public DatabaseRegister(){}
 	
+	/**
+	 * 
+	 * @param newEnglishWord
+	 * @param newPolishWord
+	 * @param isKnown
+	 */
 	public DatabaseRegister(String newEnglishWord, String newPolishWord, int isKnown) {
 		
 		this.polishWord = newPolishWord;
