@@ -69,82 +69,27 @@ public class Database{
 		wordsLoadedFromFile.loadFileToArray();	
 		
 		for (int i = 0; i < wordsLoadedFromFile.getLength(); i++){
-			int tempWordIndex = -1;
 			newLine = "";
 			temporaryLine = wordsLoadedFromFile.getLineFromArray(i);
 			st = new StringTokenizer(temporaryLine);
-			StringBuffer newLineBuffer = new StringBuffer("");
 			
 			//Petla po kazdym slowie w linii
 			while(st.hasMoreTokens()){
 				
 				tempWord = st.nextToken();  // osobne slowa
-			//	tempIndex = this.checkOccurence(tempWord, wordsList);
 				
-				// sprawdz czy slowo juz istnieje
-//				if(tempIndex != -1) {
-//				System.out.println("Istnieje");
-//					//wordsList.get(tempIndex).addOccurence();
-//				}
 				if(this.checkOccurence(tempWord, wordsList) == -1) {
 					
-					//Jesli slowo istnieje w predefiniowanej bazie danych pobierz jego index i dodaj tlumaczenie
-					tempWordIndex = this.findWord(tempWord, databaseWordsList); // Get word index from Database if exist, else -1
-					//state = this.getStateOfWordWithIndex(tempWordIndex);				
-					if (tempWordIndex >= 0 
-							//&& (this.getStateOfWordWithIndex(tempWordIndex, databaseWordsList) == 1 || 
-							//this.getStateOfWordWithIndex(tempWordIndex, databaseWordsList) == 2)
-						){ //1 pomin slowa znane					
-						newWord = this.getPolishWordWithIndex(tempWordIndex, databaseWordsList);						
-						newLineBuffer.append(tempWord);
-						newLineBuffer.append("(");
-						newLineBuffer.append(newWord);
-						newLineBuffer.append(") ");			
-					}
-					else {
-						newLineBuffer.append(tempWord);
-						newLineBuffer.append(" ");
-					}
-					newLine = newLineBuffer.toString();
-					this.addNewWord(tempWord, newWord, 1);
-					
+					newLine += translateKnownWords(tempWord)[0];
+					this.addNewWord(tempWord, translateKnownWords(tempWord)[1], 1);			
 				}				
-				else {
-					
-					//Jesli slowo istnieje w predefiniowanej bazie danych pobierz jego index i dodaj tlumaczenie
-					tempWordIndex = this.findWord(tempWord, databaseWordsList); // Get word index from Database if exist, else -1
-					//state = this.getStateOfWordWithIndex(tempWordIndex);				
-					if (tempWordIndex >= 0 
-							//&& (this.getStateOfWordWithIndex(tempWordIndex, databaseWordsList) == 1 || 
-							//this.getStateOfWordWithIndex(tempWordIndex, databaseWordsList) == 2)
-						){ //1 pomin slowa znane					
-						newWord = this.getPolishWordWithIndex(tempWordIndex, databaseWordsList);						
-						newLineBuffer.append(tempWord);
-						newLineBuffer.append("(");
-						newLineBuffer.append(newWord);
-						newLineBuffer.append(") ");
-					}
-					else {
-						newLineBuffer.append(tempWord);
-						newLineBuffer.append(" ");
-					}
-				
-					newLine = newLineBuffer.toString();
+				else {			
+					newLine += translateKnownWords(tempWord)[0];
 				}
-				
-
 			}
 			System.out.println(newLine);  //test
-		}
-		
-		// test occurences
-	//	tempIndex = this.findWord("the", wordsList);
-	//	wordsList.get(1).getOccurences();
-	//	System.out.println(wordsList); 
-		
-		//wordsList.addAll(new ReadFileToArray().ReadDatabaseFileToArray(fileName));
-		//wordsList.add(new DatabaseRegister(newEnglishWord, newPolishWord, isKnown));
-	}	
+		}		
+	}
 	
 	/**
 	 * Load words from database file to DatabaseRegister
@@ -176,6 +121,35 @@ public class Database{
 		for (DatabaseRegister cos : wordsList) {
 			System.out.println(cos.getEnglishWord());
 		}
+	}
+	
+	public String[] translateKnownWords(String word){
+		
+		int tempIndex = -1; 
+		String newWord = "";
+		String[] words = new String[2];
+		StringBuffer newLineBuffer = new StringBuffer("");
+		
+		//Jesli slowo istnieje w predefiniowanej bazie danych pobierz jego index i dodaj tlumaczenie
+		tempIndex = this.findWord(word, databaseWordsList); // Get word index from Database if exist, else -1
+		//state = this.getStateOfWordWithIndex(tempWordIndex);				
+		if (tempIndex >= 0 
+				//&& (this.getStateOfWordWithIndex(tempWordIndex, databaseWordsList) == 1 || 
+				//this.getStateOfWordWithIndex(tempWordIndex, databaseWordsList) == 2)
+			){ //1 pomin slowa znane					
+			newWord = this.getPolishWordWithIndex(tempIndex, databaseWordsList);						
+			newLineBuffer.append(word);
+			newLineBuffer.append("(");
+			newLineBuffer.append(newWord);
+			newLineBuffer.append(") ");			
+		}
+		else {
+			newLineBuffer.append(word);
+			newLineBuffer.append(" ");
+		}
+		words[0] = newLineBuffer.toString();
+		words[1] = newWord;
+		return words;
 	}
 	
 	//Check if word exist in database
