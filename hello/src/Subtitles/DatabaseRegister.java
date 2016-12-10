@@ -7,8 +7,9 @@ public  class DatabaseRegister {
 	private  String polishWord = "";
 	private  String englishWord = "";
 	private  int isKnownState = -1; // 0 - new, 1 - unknown, 2 - known
-	private static int currentIndex = 0;
+	private static int currentIndex = 0; // unikalny index slowa
 	private int wordIndex = 0;
+	private int occurences = 0;
 	
 	public DatabaseRegister(){}
 	
@@ -25,6 +26,7 @@ public  class DatabaseRegister {
 		this.isKnownState = isKnown;
 		this.wordIndex = currentIndex;
 		currentIndex++;
+		occurences = 1;
 	}
 	
 	public void createRegister(String newEnglishWord, String newPolishWord, int isKnown) {
@@ -48,6 +50,14 @@ public  class DatabaseRegister {
 	
 	public int getIndex(){
 		return wordIndex;
+	}
+	
+	public int getOccurences(){
+		return occurences;
+	}
+	
+	public void addOccurence(){
+		occurences++;
 	}
 	
 

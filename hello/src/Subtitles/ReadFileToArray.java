@@ -9,16 +9,31 @@ public class ReadFileToArray {
 
 	private FileReader readFile = null;
 	private String linia = " ";
-	ArrayList<String> lista = new ArrayList<String>(); // glowna lista
 	private BufferedReader bfr;
+	private BufferedReader loadedFile;
 	
-	DatabaseRegister tempDatabaseFromFile;
+	ArrayList<String> lista = new ArrayList<String>(); // glowna lista
 	ArrayList<DatabaseRegister> tempWordsList = new ArrayList<DatabaseRegister>();
-	
+	DatabaseRegister tempDatabaseFromFile;
 	String tempLine = "";
 	String[] lineSeparated = new String[3];
 	private int tempIsKnown = 0;
 	ArrayList<DatabaseRegister> dictWordsList = new ArrayList<DatabaseRegister>(); // Lista slownika
+	
+	/**
+	 * Tworzy otwiera plik i laduje go do fileName oraz tworzy baze slow z pliku
+	 */
+	public ReadFileToArray(String fileName) {
+		
+		this.loadedFile = openTextFile(fileName);   // £aduje ca³y plik do loadedFile
+		
+		//this.closeTextFile();
+	}
+	
+	public ReadFileToArray() {
+		
+	
+	}
 
 	/**
 	 * Open text file
@@ -88,20 +103,22 @@ public class ReadFileToArray {
 	/**
 	 * Loads each line from file to ArrayList object
 	 */
-	public void loadFileToArray(String fileName) {
+	public void loadFileToArray() {
 
-		this.openTextFile(fileName);
+		//this.openTextFile(fileName);
 
 		try {
-			while ((linia = bfr.readLine()) != null) {
+			while ((linia = loadedFile.readLine()) != null) {
 
 				lista.add(linia);
 			}
 		} catch (IOException e) {
 			System.out.println("Blad odczytu");
-		}
+		}//catch (NullPointerException e) {
+//			System.out.println("Null pointer exception");
+//		}
 		
-		closeTextFile();
+		
 	}
 
 	// Print
@@ -113,6 +130,12 @@ public class ReadFileToArray {
 	public String getLineFromArray(int i) {
 		return lista.get(i);
 	}
+	
+	// Get Buffered file
+	public BufferedReader getBufferedFile() {
+		return loadedFile;
+	}
+
 
 	public int getLength() {
 		return lista.size();
