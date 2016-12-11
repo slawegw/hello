@@ -2,7 +2,7 @@ package Subtitles;
 
 
 
-public  class DatabaseRegister {
+public  class DatabaseRegister implements Comparable<DatabaseRegister> {
 	
 	private  String polishWord = "";
 	private  String englishWord = "";
@@ -27,6 +27,13 @@ public  class DatabaseRegister {
 		this.wordIndex = currentIndex;
 		currentIndex++;
 		occurences = 1;
+	}
+	
+	@Override
+	public int compareTo(DatabaseRegister o){
+		//int registerCompare = occurences.compareTo(o.occurences);
+		return Integer.compare(occurences, o.occurences);
+		//return registerCompare;
 	}
 	
 	public void createRegister(String newEnglishWord, String newPolishWord, int isKnown) {

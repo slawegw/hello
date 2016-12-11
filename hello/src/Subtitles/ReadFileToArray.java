@@ -35,6 +35,7 @@ public class ReadFileToArray {
 	
 	}
 
+
 	/**
 	 * Open text file
 	 * @param fileName String to file

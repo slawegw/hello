@@ -1,6 +1,9 @@
 package Subtitles;
 
 import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import java.util.Collections;
 
 
 
@@ -8,13 +11,6 @@ public class Database{
 	
 	private ArrayList<DatabaseRegister> databaseWordsList = new ArrayList<DatabaseRegister>(); //lista slow zaladowanych z bazy danych
 	private ArrayList<DatabaseRegister> wordsList = new ArrayList<DatabaseRegister>();         //lista slow zaladowanych z pliku z napisami
-	//ArrayList<String> polishWord = new ArrayList<String>();
-	//ArrayList<Integer> isKnown = new ArrayList<Integer>();
-	//ArrayList<Integer> index = new ArrayList<Integer>();
-	//private static int currentIndex;
-	
-	//DatabaseRegister newWord = new DatabaseRegister(newEnglishWord, newPolishWord, isKnown);
-	//newWord.createRegister(newEnglishWord, newPolishWord, isKnown);
 	
 	DatabaseRegister printWord = new DatabaseRegister();
 	DatabaseRegister newWord;
@@ -69,7 +65,7 @@ public class Database{
 		wordsLoadedFromFile.loadFileToArray();	
 		
 		for (int i = 0; i < wordsLoadedFromFile.getLength(); i++){
-			newLine = "";
+			newLine = ""; //czyszczenie kontenera dla nowej lini
 			temporaryLine = wordsLoadedFromFile.getLineFromArray(i);
 			st = new StringTokenizer(temporaryLine);
 			
@@ -78,14 +74,17 @@ public class Database{
 				
 				tempWord = st.nextToken();  // osobne slowa
 				
-				if(this.checkOccurence(tempWord, wordsList) == -1) {
+				//if (onlyWordsRegex(tempWord)){
+								
+				if(this.checkOccurence(tempWord, wordsList) == -1) {  //czy slowo sie juz pojawilo w napisach
 					
 					newLine += translateKnownWords(tempWord)[0];
-					this.addNewWord(tempWord, translateKnownWords(tempWord)[1], 1);			
+					if (onlyWordsRegex(tempWord)) this.addNewWord(tempWord, translateKnownWords(tempWord)[1], 1);			
 				}				
 				else {			
 					newLine += translateKnownWords(tempWord)[0];
 				}
+			//}
 			}
 			System.out.println(newLine);  //test
 		}		
@@ -123,6 +122,35 @@ public class Database{
 		}
 	}
 	
+	
+	/**
+	 * Returns words list sorted in ascending order
+	 * @return
+	 */
+	public ArrayList<DatabaseRegister> getAscendingOrder(){		
+		ArrayList<DatabaseRegister> wordsSortedAscending = new ArrayList<DatabaseRegister>();  
+		wordsSortedAscending.addAll(wordsList);
+		 Collections.sort(wordsSortedAscending);
+		return wordsSortedAscending;
+	}
+	
+	/**
+	 * Returns words list sorted in scending order
+	 * @return
+	 */
+	public ArrayList<DatabaseRegister> getDescendingOrder(){		
+		ArrayList<DatabaseRegister> wordsSortedDescending = new ArrayList<DatabaseRegister>();  
+		wordsSortedDescending.addAll(wordsList);
+		 Collections.sort(wordsSortedDescending);
+		 Collections.reverse(wordsSortedDescending);
+		return wordsSortedDescending;
+	}
+	
+	/**
+	 * Appends translation to words in brackets
+	 * @param word English word to translation
+	 * @return English word with polish translation in brackets.
+	 */
 	public String[] translateKnownWords(String word){
 		
 		int tempIndex = -1; 
@@ -191,8 +219,10 @@ public class Database{
 		for (DatabaseRegister curWord : wordsListPoint){
 			if (curWord.getEnglishWord().equalsIgnoreCase(word)){
 				state = curWord.getIndex();
-				curWord.addOccurence();
-				System.out.println("Occurence("+ curWord.getEnglishWord() +"):"+curWord.getOccurences());
+				if(onlyWordsRegex(word)){
+					curWord.addOccurence();
+				}
+				//System.out.println("Occurence("+ curWord.getEnglishWord() +"):"+curWord.getOccurences());
 				break;
 			}
 			//else {
@@ -203,6 +233,22 @@ public class Database{
 		return state;
 	}
 
+	public static boolean onlyWordsRegex(String str2Check){
+		boolean state = false;
+		Pattern checkRegex = Pattern.compile("[a-zA-Z]");
+		
+		Matcher regexMatcher = checkRegex.matcher(str2Check);
+		
+		while(regexMatcher.find()){
+			if(regexMatcher.group().length() != 0){
+				//System.out.println(regexMatcher.group().trim());
+				state = true;
+			}
+			else state = false;
+			
+		}
+		return state;
+	}
 	
 	
 	
