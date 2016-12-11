@@ -23,13 +23,8 @@ public class Translate {
 		wordsDatabase = new Database("wordsDatabase.txt");
 		wordsDatabase.loadsWordsFromFile("the.big.bang.theory.txt");
 		
-		
-		//friend.loadFileToArray("the.big.bang.theory.txt");  // laduje plik do glownej listy
-		
-		//friend.printLineFromArray(2);
-			
+					
 
-		int index;
 		//wordsDatabase.printAll();
 		
 		System.out.println("-----------------------------");

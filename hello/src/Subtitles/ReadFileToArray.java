@@ -31,10 +31,8 @@ public class ReadFileToArray {
 	}
 	
 	public ReadFileToArray() {
-		
-	
+			
 	}
-
 
 	/**
 	 * Open text file
