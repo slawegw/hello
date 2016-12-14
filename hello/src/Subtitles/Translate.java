@@ -1,12 +1,19 @@
 package Subtitles;
 
+import java.awt.EventQueue;
 import java.util.ArrayList;
 import java.util.StringTokenizer;
+
+import Subtitles.Graph.MainPanel;
+//import kurs.MyFrame;
+
 import java.util.Collections;
 
 public class Translate {
 
-	public static void main(String[] args) {
+	//  public static void main(String[] args) {
+		
+		public Translate(String filePath) {
 		// TODO Auto-generated method stub
 		
 		ArrayList<DatabaseRegister> loadedWordsList = new ArrayList<DatabaseRegister>();
@@ -21,9 +28,9 @@ public class Translate {
 
 		//wordsDatabase.loadsWordsFromFile("wordsDatabase.txt");
 		wordsDatabase = new Database("wordsDatabase.txt");
-		wordsDatabase.loadsWordsFromFile("the.big.bang.theory.txt");
-		
-					
+		//wordsDatabase.loadsWordsFromFile("the.big.bang.theory.txt");
+		wordsDatabase.loadsWordsFromFile(filePath);
+	
 
 		//wordsDatabase.printAll();
 		
@@ -34,6 +41,13 @@ public class Translate {
 		}
 		//index = wordsDatabase.findWord("not");
 		//wordsDatabase.getWord(index);
+		
+//		EventQueue.invokeLater(new Runnable(){
+//		@Override
+//		public void run(){
+//			new MyFrame();
+//		}
+//		});
 		
 		//wordsDatabase.getWord(wordsDatabase.findWord("is"));
 		
